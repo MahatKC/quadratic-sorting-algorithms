@@ -21,13 +21,15 @@ int selectionSort(int array[], int size){
     }*/
     min = j;
     for(i=j+1; i<size; i++){
+      iter_count++;
       if(array[i] < array[min]){
-          iter_count++;
           min = i;
       }
     }
-    if(&array[min]!=&array[j]){
-      swap(&array[min], &array[j]);
+    if(array[min]!=array[j]){
+      aux = array[min];
+      array[min] = array[j];
+      array[j] = aux;
     }
   }
   return iter_count;
@@ -38,9 +40,8 @@ int bubbleSort(int array[], int size){
 
   for(j=0; j<size-1; j++){
     for(i=0; i<size-j-1; i++){
+      iter_count++;
       if(array[i] > array[i+1]){
-        iter_count++;
-
         aux = array[i];
         array[i] = array[i+1];
         array[i+1] = aux;
@@ -51,7 +52,7 @@ int bubbleSort(int array[], int size){
 }
 
 int insertionSort(int array[], int size) {
-  int iter_count = 0, i, j, aux;
+  int iter_count=0, i, j, aux;
 
   for(i=1; i<size; i++){
     aux = array[i];
