@@ -3,6 +3,7 @@ import ctypes
 import os
 import pathlib
 import numpy as np
+np.set_printoptions(precision=6)
 
 def selectionSortProgramiz(array, size):
     #SOURCE: https://www.programiz.com/dsa/selection-sort
@@ -50,7 +51,7 @@ def main():
         set_name = set_names[set_index]
         set_letter = set_letters[set_index]
         
-        for size in sizes[:4]: 
+        for size in sizes: 
         #itera pelos diferentes tamanhos de conjuntos
             array = openFile(set_name, set_letter+str(size))
             
@@ -69,7 +70,7 @@ def main():
                         iter_count = functiontest.selectionSort(arr, size)
                     t1 = time.time()
 
-                    print(f"Alg: {algorithm}| Set: {set_letter}{str(size)}| Iter {i}| Tempo: {np.round(t1-t0,6)}s| Count: {iter_count}")
+                    print(f"Alg: {algorithm}| Set: {set_letter}{str(size)}| Iter {i}| Tempo: {round(t1-t0,6)}s| Count: {iter_count}")
 
 if __name__ == "__main__":
     main()

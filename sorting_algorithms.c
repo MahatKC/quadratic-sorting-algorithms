@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <time.h>
 
-// function to swap the the position of two elements
 void swap(int *a, int *b){
   int temp = *a;
   *a = *b;
@@ -9,53 +8,42 @@ void swap(int *a, int *b){
 }
 
 int selectionSort(int array[], int size){
-    int iter_count = 0;
+  int iter_count=0, i, j, min, aux;
   /*clock_t t0,t1;
   double time_double;
   t0 = clock();*/
-  for(int step=0; step<size-1; step++){
-    /*if(step%1000==0){
+  for(j=0; j<size-1; j++){
+    /*if(j%1000==0){
         t1 = clock() - t0;
         time_double = ((double)t1)/(CLOCKS_PER_SEC/1000);
-        printf("STEP: %d TIME: %lf SEC\n", step, time_double/1000.0);
+        printf("j: %d TIME: %lf SEC\n", j, time_double/1000.0);
         t0 = clock();
     }*/
-    int min_idx = step;
-    for(int i=step+1; i<size; i++){
-
-      // To sort in descending order, change > to < in this line.
-      // Select the minimum element in each loop.
-      if(array[i] < array[min_idx]){
+    min = j;
+    for(i=j+1; i<size; i++){
+      if(array[i] < array[min]){
           iter_count++;
-          min_idx = i;
+          min = i;
       }
     }
-
-    // put min at the correct position
-    swap(&array[min_idx], &array[step]);
+    if(&array[min]!=&array[j]){
+      swap(&array[min], &array[j]);
+    }
   }
   return iter_count;
 }
 
 int bubbleSort(int array[], int size){
-    int iter_count = 0;
+  int iter_count=0, i, j, aux;
 
-  // loop to access each array element
-  for(int step=0; step<size-1; step++){
-      
-    // loop to compare array elements
-    for(int i=0; i<size-step-1; i++){
-      
-      // compare two adjacent elements
-      // change > to < to sort in descending order
+  for(j=0; j<size-1; j++){
+    for(i=0; i<size-j-1; i++){
       if(array[i] > array[i+1]){
-          iter_count++;
-        
-        // swapping occurs if elements
-        // are not in the intended order
-        int temp = array[i];
+        iter_count++;
+
+        aux = array[i];
         array[i] = array[i+1];
-        array[i+1] = temp;
+        array[i+1] = aux;
       }
     }
   }
@@ -63,21 +51,20 @@ int bubbleSort(int array[], int size){
 }
 
 int insertionSort(int array[], int size) {
-    int iter_count = 0;
+  int iter_count = 0, i, j, aux;
 
-  for(int step=1; step<size; step++){
-    int key = array[step];
-    int j = step-1;
+  for(i=1; i<size; i++){
+    aux = array[i];
+    j = i-1;
 
-    // Compare key with each element on the left of it until an element smaller than
-    // it is found.
-    while (key<array[j] && j>=0) {
-        iter_count++;
+    while (j>=0 && array[j]>aux) {
+      iter_count++;
       array[j+1] = array[j];
       j--;
     }
-    array[j+1] = key;
+    array[j+1] = aux;
   }
+
   return iter_count;
 }
 
