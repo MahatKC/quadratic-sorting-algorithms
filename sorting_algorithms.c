@@ -7,8 +7,9 @@ void swap(int *a, int *b){
   *b = temp;
 }
 
-int selectionSort(int array[], int size){
-  int iter_count=0, i, j, min, aux;
+long long int selectionSort(int array[], int size){
+  long long int iter_count=0;
+  int i, j, min, aux;
   /*clock_t t0,t1;
   double time_double;
   t0 = clock();*/
@@ -35,8 +36,9 @@ int selectionSort(int array[], int size){
   return iter_count;
 }
 
-int bubbleSort(int array[], int size){
-  int iter_count=0, i, j, aux;
+long long int bubbleSort(int array[], int size){
+  long long int iter_count=0;
+  int i, j, aux;
 
   for(j=0; j<size-1; j++){
     for(i=0; i<size-j-1; i++){
@@ -51,8 +53,9 @@ int bubbleSort(int array[], int size){
   return iter_count;
 }
 
-int insertionSort(int array[], int size) {
-  int iter_count=0, i, j, aux;
+long long int insertionSort(int array[], int size) {
+  long long int iter_count=0;
+  int i, j, aux;
 
   for(i=1; i<size; i++){
     aux = array[i];
